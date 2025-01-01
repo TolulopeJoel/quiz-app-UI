@@ -30,7 +30,7 @@ export default function RootLayout({
                       <Link href="/" className="text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
                         Home
                       </Link>
-                      <Link href="/create" className="text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
+                      <Link href="/quiz/create" className="text-white hover:bg-indigo-500 hover:bg-opacity-75 px-3 py-2 rounded-md text-sm font-medium">
                         Create Quiz
                       </Link>
                     </div>
