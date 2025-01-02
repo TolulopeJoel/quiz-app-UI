@@ -1,9 +1,8 @@
 "use client"
 
 import { useState, useEffect } from 'react'
-import { ArrowLeft, Check, X } from 'lucide-react'
+import { Check, X } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import { useParams } from 'next/navigation'
 
 interface Step {
