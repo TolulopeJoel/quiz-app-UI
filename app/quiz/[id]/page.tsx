@@ -151,7 +151,7 @@ export default function Home() {
             {quiz.Steps.map((step, index) => (
               <div key={index} className="space-y-4">
                 <h3 className="font-medium text-gray-900">
-                  Step {index + 1}: {step.Title}
+                  {step.Title}
                 </h3>
                 <p className="text-gray-700">{step.Result}</p>
 
