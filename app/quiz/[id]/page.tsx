@@ -47,6 +47,9 @@ function convertTMProToHtml(tmpText: string) {
   tmpText = tmpText.replace(/&lt;i&gt;(.*?)&lt;\/i&gt;/gi, '<em>$1</em>');
   tmpText = tmpText.replace(/&lt;u&gt;(.*?)&lt;\/u&gt;/gi, '<u>$1</u>');
   tmpText = tmpText.replace(/&lt;s&gt;(.*?)&lt;\/s&gt;/gi, '<del>$1</del>');
+  
+  // Handle both escaped and literal newlines
+  tmpText = tmpText.replace(/\\n/g, '<br>');
   tmpText = tmpText.replace(/\n/g, '<br>');
 
   return tmpText;
@@ -113,9 +116,9 @@ export default function Home() {
         </div>
 
         <div className="mb-8">
-          <p className="text-base text-gray-900">
-            {quiz.Question}
-          </p>
+          <div className="text-base text-gray-900">
+            <div dangerouslySetInnerHTML={{ __html: convertTMProToHtml(quiz.Question) }} />
+          </div>
         </div>
 
         <div className="space-y-3 mb-8">
@@ -150,9 +153,9 @@ export default function Home() {
             {quiz.Steps.map((step, index) => (
               <div key={index} className="space-y-4">
                 <h3 className="font-medium text-gray-900">
-                  {step.Title}
+                  <div dangerouslySetInnerHTML={{ __html: convertTMProToHtml(step.Title) }} />
                 </h3>
-                <p className="text-gray-700">{step.Result}</p>
+                <div className="text-gray-700" dangerouslySetInnerHTML={{ __html: convertTMProToHtml(step.Result) }} />
 
                 {step.ImageUrl && (
                   <div className="mt-4">
