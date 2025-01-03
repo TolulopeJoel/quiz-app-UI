@@ -31,7 +31,7 @@ export default function QuizList() {
   const [quizzes, setQuizzes] = useState<Quiz[]>([])
 
   useEffect(() => {
-    fetch('http://localhost:8000/questions/')
+    fetch('https://satquiz.onrender.com/questions/')
       .then(response => response.json())
       .then(data => setQuizzes(data))
       .catch(error => console.error('Error fetching quizzes:', error))

@@ -64,7 +64,7 @@ export default function Home() {
       if (!params.id) return;
 
       try {
-        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'https://satquiz.onrender.com'
         const response = await fetch(`${apiUrl}/questions/${params.id}`)
         if (!response.ok) {
           throw new Error('Failed to fetch quiz data')

@@ -110,7 +110,7 @@ export default function CreateQuiz() {
         }))
       }
 
-      const response = await fetch('http://localhost:8000/questions/', {
+      const response = await fetch('https://satquiz.onrender.com/questions/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
