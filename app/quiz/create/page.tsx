@@ -21,7 +21,7 @@ interface ExplanationStep {
 interface QuizApiRequest {
   Question: string;
   Solution: string;
-  ImageUrl: string;
+  ImageUrl?: string;
   Options: string[];
   CorrectAnswer: string;
   Difficulty: string;
@@ -94,15 +94,14 @@ export default function CreateQuiz() {
     setIsSubmitting(true)
 
     try {
-      // Transform the form data to match API structure
       const apiRequest: QuizApiRequest = {
         Question: question,
         Solution: solution,
-        ImageUrl: mainImageUrl,
-        Options: options.filter(option => option !== ''), // Remove empty options
+        ImageUrl: mainImageUrl || undefined,
+        Options: options.filter(option => option !== ''),
         CorrectAnswer: correctAnswer,
         Difficulty: difficulty,
-        Tags: tags.split(',').map(tag => tag.trim()).filter(Boolean), // Convert comma-separated tags to array
+        Tags: tags.split(',').map(tag => tag.trim()).filter(Boolean),
         Steps: explanationSteps.map(step => ({
           Title: step.Title,
           Result: step.Result,
@@ -120,7 +119,6 @@ export default function CreateQuiz() {
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => null)
-        console.log(errorData, "far away!")
         throw new Error(errorData?.message || `Server error: ${response.status}`)
       }
 
@@ -150,12 +148,12 @@ export default function CreateQuiz() {
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <Label htmlFor="question" className="text-sm font-medium text-gray-700">Question</Label>
-            <Input
+            <Textarea
               id="question"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               required
-              className="mt-1"
+              className="mt-1 min-h-[100px]"
             />
           </div>
           <div>
@@ -293,17 +291,19 @@ export default function CreateQuiz() {
             <Label className="text-sm font-medium text-gray-700">Explanation Steps</Label>
             {explanationSteps.map((step, index) => (
               <div key={index} className="mt-2 space-y-2 p-4 bg-gray-50 rounded-md">
-                <Input
+                <Textarea
                   value={step.Title}
                   onChange={(e) => handleExplanationStepChange(index, 'Title', e.target.value)}
                   placeholder="Step Title"
                   required
+                  className="min-h-[80px]"
                 />
-                <Input
+                <Textarea
                   value={step.Result}
                   onChange={(e) => handleExplanationStepChange(index, 'Result', e.target.value)}
                   placeholder="Step Result"
                   required
+                  className="min-h-[80px]"
                 />
                 <Input
                   value={step.ImageUrl || ''}
