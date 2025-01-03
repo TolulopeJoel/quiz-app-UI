@@ -39,7 +39,7 @@ function convertTMProToHtml(tmpText: string) {
     return `<span style="color: ${color}">${content}</span>`;
   });
 
-  tmpText = tmpText.replace(/&lt;size=(\d+)&gt;(.*?)&lt;\/size&gt;/gi, (match, size, content) => {
+  tmpText = tmpText.replace(/&lt;size=(\d+)%?&gt;(.*?)&lt;\/size&gt;/gi, (match, size, content) => {
     return `<span style="font-size: ${size}%">${content}</span>`;
   });
 
